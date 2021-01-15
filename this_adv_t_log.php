@@ -11,8 +11,8 @@
       </div>
 
       <div class="right">
-            <a href="logout.php"><button type="button" name="button" class="but_log">Wyloguj się</button></a>
-              <a href="#"> <button type="button" name="button" class="but_log" id="but_reg">Dodaj ogłoszenie</button></a>
+          <a href="dodaj_ogloszenie.php"> <button type="button" name="button" class="but_log">Dodaj ogłoszenie</button></a>
+          <a href="logout.php"> <button type="button" name="button" class="but_log" id="but_reg">Wyloguj się</button></a>
       </div>
   </header>
     
@@ -49,10 +49,27 @@
     
     <div class="this_adv_main_parent">
         <div class="this_adv_photo_house">
-            <img src= <?php 
+            
+             
+            <?php 
+           
+            $zdj="";
             foreach($pdo->query('SELECT zdjecie FROM ogloszenia where id='.$id.' ') as $wiersz){
-                echo $wiersz['zdjecie'];}  
-                 ?> alt="not_found" class="this_adv_photo"/>
+                    $zdj = $wiersz['zdjecie'];}  
+            
+                  
+           
+            
+            
+            echo "<a data-fslightbox='gallery' href='".$zdj."' ><img src='".$zdj."' alt='not_found' class='this_adv_photo'/></a>";
+            
+               
+                    
+                
+                ?>
+            
+            
+           
         </div>
         <div class="this_adv_description">
             <p class="this_adv_description_title">Opis</p>
@@ -80,6 +97,10 @@
             foreach($pdo->query('SELECT uzytkownik FROM ogloszenia where id='.$id.' ') as $wiersz){
                 echo $wiersz['uzytkownik'];}  
                  ?></p>
+            <p class="this_adv_info_text">Numer telefonu:  <?php 
+            foreach($pdo->query('SELECT nr_telefonu FROM ogloszenia where id='.$id.' ') as $wiersz){
+                echo $wiersz['nr_telefonu'];}  
+                 ?></p>
         
         </div>
         <div class="info_text">
@@ -98,8 +119,10 @@
 
          try{
             
-             foreach($pdo->query('SELECT * FROM ogloszenia order by data ') as $wiersz){
+             foreach($pdo->query('SELECT * FROM ogloszenia where kategoria="'.$kategoria.'" and id<>"'.$id.'" order by data LIMIT 5') as $wiersz){
                 echo "<a href='this_adv_t.php?id=".$wiersz['id']."'><article class='adv_view'> <img src='".$wiersz['zdjecie']."'><div><p>".$wiersz['nazwa']."</p><p> Cena: ".$wiersz['cena']."</p><p>Lokalizacja: ".$wiersz['lokalizacja']."</p><p>Data dodania: ".$wiersz['data']."</div> </article></a>";
+                 
+                 echo"<br>";
             }
 
 
@@ -116,7 +139,7 @@
 
 
   
-
+ <script src="lb/fslightbox.js"></script>
   
 
 

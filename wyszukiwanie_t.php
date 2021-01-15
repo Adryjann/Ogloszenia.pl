@@ -12,8 +12,8 @@
       </div>
 
       <div class="right">
-            <a href="logout.php"><button type="button" name="button" class="but_log">Wyloguj się</button></a>
-              <a href=""> <button type="button" name="button" class="but_log" id="but_reg">Dodaj ogłoszenie</button></a>
+          <a href="dodaj_ogloszenie.php"> <button type="button" name="button" class="but_log">Dodaj ogłoszenie</button></a>
+          <a href="logout.php"> <button type="button" name="button" class="but_log" id="but_reg">Wyloguj się</button></a>
       </div>
   </header>
     
@@ -125,6 +125,7 @@
                     </div>
                     </div>
                     </a>";
+                    echo "<br>";
                 }
                 unset($_SESSION['kryterium']);
                 unset($_SESSION['location']);

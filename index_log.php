@@ -11,7 +11,7 @@
       </div>
 
       <div class="right">
-            <button type="button" name="button" class="but_log">Dodaj ogłoszenie</button>
+          <a href="dodaj_ogloszenie.php"> <button type="button" name="button" class="but_log">Dodaj ogłoszenie</button></a>
           <a href="logout.php"> <button type="button" name="button" class="but_log" id="but_reg">Wyloguj się</button></a>
       </div>
   </header>
@@ -23,13 +23,7 @@
 
     <article class="center_art">
 
-      <article class="adv_view">
-            <img src="sam.jpeg" alt="samochod">
-            <p>Mercedes-benz C63 </p>
-            <p>Cena: 63000zł</p>
-            <p>Kraków(Małopolskie)</p>
-
-      </article>
+      
 
       <?php
             
@@ -44,8 +38,10 @@
 
           try{
             $pdo = new PDO("mysql:host=$servername;dbname=baza_ogloszenia",$username, $pass);
-            foreach($pdo->query('SELECT * FROM ogloszenia order by data ') as $wiersz){
-                echo "<a href='this_adv_t_log.php?id=".$wiersz['id']."'><article class='adv_view'> <img src='".$wiersz['zdjecie']."'><p>".$wiersz['nazwa']."</p><p> Cena: ".$wiersz['cena']."</p><p>".$wiersz['lokalizacja']."</p> </article></a>";
+            foreach($pdo->query('SELECT * FROM ogloszenia order by data desc LIMIT 5 ') as $wiersz){
+                echo "<a href='this_adv_t.php?id=".$wiersz['id']."'><article class='adv_view'> <img src='".$wiersz['zdjecie']."'><div><p>".$wiersz['nazwa']."</p><p> Cena: ".$wiersz['cena']."</p><p>Lokalizacja: ".$wiersz['lokalizacja']."</p><p>Data dodania: ".$wiersz['data']."</div> </article></a>";
+                
+                echo"<br>";
             }
 
 
@@ -74,9 +70,11 @@
       </tr>
         </form>
         
-        
+       
 
     </table>
+      
+      
 
 
     </div>
@@ -99,7 +97,7 @@
   </div>
 
   <footer>
-
+           
 
   </footer>
 

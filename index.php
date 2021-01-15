@@ -36,8 +36,10 @@
 
           try{
             $pdo = new PDO("mysql:host=$servername;dbname=baza_ogloszenia",$username, $pass);
-            foreach($pdo->query('SELECT * FROM ogloszenia order by data ') as $wiersz){
+            foreach($pdo->query('SELECT * FROM ogloszenia order by data desc LIMIT 5 ') as $wiersz){
                 echo "<a href='this_adv_t.php?id=".$wiersz['id']."'><article class='adv_view'> <img src='".$wiersz['zdjecie']."'><div><p>".$wiersz['nazwa']."</p><p> Cena: ".$wiersz['cena']."</p><p>Lokalizacja: ".$wiersz['lokalizacja']."</p><p>Data dodania: ".$wiersz['data']."</div> </article></a>";
+                
+                echo"<br>";
             }
 
 

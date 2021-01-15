@@ -117,6 +117,11 @@ a{
   font-size: 15px;
 }
 
+
+#moje_konto{
+    margin-right: 1vw;
+}
+
     /*wyszukiwanie wstępne */
 .find_adv{
   width: 80vw;
@@ -447,6 +452,15 @@ footer{
     margin: auto;
 }
 
+.fdi{
+    margin-top: -100px;
+    margin-left: 500px;
+}
+
+/*Modyfikacja konta*/
+
+
+
 
 
 
@@ -668,7 +682,7 @@ footer{
 }
 
 .form_dodawania_info_naglowek{
-    font-size: 4vw;
+    font-size: 2vw;
     color: #282828;
     
 }

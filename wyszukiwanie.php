@@ -117,6 +117,7 @@
                     </div>
                     </div>
                     </a>";
+                    echo "<br>";
                 }
                 unset($_SESSION['kryterium']);
                 unset($_SESSION['location']);

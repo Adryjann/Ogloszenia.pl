@@ -31,7 +31,7 @@
               <input type="password" name="haslo" placeholder="Hasło" class="register_form"/>
               <br>
              
-              <div class="g-recaptcha" data-sitekey="6LdrjucZAAAAAGRI5zSp-6EaOcqXgOzwjyrLXRMM"></div>
+              
             <input type="submit" value="Zaloguj się" class="but_log" id="but_reg">
               
               
@@ -63,8 +63,8 @@
             
              $login_query = "SELECT count(*) from uzytkownicy where login='".$login."'";
              $password_query = "SELECT password from uzytkownicy where login='".$login."'";
-                
-            
+             
+             
             $log = $pdo->query($login_query);
             $pass = $pdo->query($password_query);
              
@@ -80,7 +80,12 @@
                  
              }
              else if(password_verify($haslo,$cpass)){
-        
+                    
+                 foreach($pdo->query("SELECT phone from uzytkownicy where login='".$login."'") as $wiersz){
+                     $nr_tel=$wiersz['phone'];
+                 }
+                
+             $_SESSION['nr_tel']=$nr_tel;
              $_SESSION['login']=$login;
              echo $_SESSION['login'];
              header ("Location: index_log.php");     
