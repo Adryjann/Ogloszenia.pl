@@ -3,6 +3,8 @@
     <link rel="stylesheet" href="style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="icon" href="fav.png"/>
+    <title>kupuj.pl</title>
 </head>
 <body>
   <header>
@@ -17,33 +19,7 @@
   </header>
     
     <?php
-    
-            
-    
-          $servername = "localhost";
-          $username = "root";
-          $pass = "";
-          $id = $_GET['id'];
-    
-            session_start();
-            if(!isset($id)){
-                  header("Location: index.php");
-            }
-            if(!isset($_SESSION['login'])){
-                header("Location: this_adv_t.php?id=$id");
-            }
-    
-        try{
-          $pdo = new PDO("mysql:host=$servername;dbname=baza_ogloszenia",$username, $pass);
-
-        }
-
-        catch(PDOException $e){
-            echo $sql . "<br>" . $e->getMessage();
-          }
-    
-    
-
+        include 'scripts/this_adv_t_log_script.php';
 
     ?>
     
@@ -52,20 +28,8 @@
             
              
             <?php 
+           include 'scripts/this_adv_t_log_script2.php';
            
-            $zdj="";
-            foreach($pdo->query('SELECT zdjecie FROM ogloszenia where id='.$id.' ') as $wiersz){
-                    $zdj = $wiersz['zdjecie'];}  
-            
-                  
-           
-            
-            
-            echo "<a data-fslightbox='gallery' href='".$zdj."' ><img src='".$zdj."' alt='not_found' class='this_adv_photo'/></a>";
-            
-               
-                    
-                
                 ?>
             
             
@@ -109,28 +73,8 @@
         </div>
         <article class="center_art">    
         <?php
-          
-            foreach($pdo->query('SELECT kategoria FROM ogloszenia where id='.$id.' ') as $wiersz){
-                $kategoria = $wiersz['kategoria'];
-            } 
-        
+          include 'scripts/this_adv_t_log_script3.php';
             
-            
-
-         try{
-            
-             foreach($pdo->query('SELECT * FROM ogloszenia where kategoria="'.$kategoria.'" and id<>"'.$id.'" order by data LIMIT 5') as $wiersz){
-                echo "<a href='this_adv_t.php?id=".$wiersz['id']."'><article class='adv_view'> <img src='".$wiersz['zdjecie']."'><div><p>".$wiersz['nazwa']."</p><p> Cena: ".$wiersz['cena']."</p><p>Lokalizacja: ".$wiersz['lokalizacja']."</p><p>Data dodania: ".$wiersz['data']."</div> </article></a>";
-                 
-                 echo"<br>";
-            }
-
-
-          }
-
-          catch(PDOException $e){
-            echo $sql . "<br>" . $e->getMessage();
-          }
         ?>
         </article> 
             

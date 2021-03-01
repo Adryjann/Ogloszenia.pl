@@ -3,7 +3,8 @@
     <link rel="stylesheet" href="style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="icon" href="fav.png"/>
+    <title>Logowanie</title>
 </head>
 <body>
   <header>
@@ -41,84 +42,11 @@
           <?php
          
            
-            @$login = $_POST['login'];
-            @$haslo = $_POST['haslo'];
-          
-          
-             
-         $servername = "localhost";
-         $username = "root";
-         $password = "";
-         session_start();
-          
-          if(isset($_SESSION['login'])){
-              header ("Location: index_log.php");
-          }
-         
-         try{
-            $pdo = new PDO("mysql:host=$servername;dbname=baza_ogloszenia",
-            $username, $password);
-              
-             
-            
-             $login_query = "SELECT count(*) from uzytkownicy where login='".$login."'";
-             $password_query = "SELECT password from uzytkownicy where login='".$login."'";
-             
-             
-            $log = $pdo->query($login_query);
-            $pass = $pdo->query($password_query);
-             
-            $count = $log->fetchColumn();
-            $cpass = $pass->fetchColumn();
-            
-              if(!isset($login)){
-                  echo "";
-              }
-             else if($count==0){
-                
-                 $_SESSION['error']="Nie ma takiego użytkownika";
-                 
-             }
-             else if(password_verify($haslo,$cpass)){
-                    
-                 foreach($pdo->query("SELECT phone from uzytkownicy where login='".$login."'") as $wiersz){
-                     $nr_tel=$wiersz['phone'];
-                 }
-                
-             $_SESSION['nr_tel']=$nr_tel;
-             $_SESSION['login']=$login;
-             echo $_SESSION['login'];
-             header ("Location: index_log.php");     
-                
-             }
-             else{
-                 
-                 $_SESSION['error']="Podano błędne hasło";
-             }
-               
-             
-                
-             
-             }
-         
-         
-             
-             catch(PDOException $e)
-                {
-                    echo $sql . "<br>" . $e->getMessage();
-                }
-
-          
+          include 'scripts/logowanie_script.php';
           ?>
-           <?php
-                if(isset($_SESSION['error'])){
-                    echo "<p class='reg_error'>".$_SESSION['error']."</p>";
-                     unset($_SESSION['error']);
-                }
-               
-                
-              
-              ?>
+          <?php
+          include 'scripts/logowanie_script2.php'; 
+          ?>
           
       </article>
    

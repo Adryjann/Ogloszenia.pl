@@ -3,6 +3,8 @@
     <link rel="stylesheet" href="style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="icon" href="fav.png"/>
+    <title>kupuj.pl</title>
 </head>
 <body>
   <header>
@@ -27,31 +29,7 @@
 
       <?php
             
-            session_start();
-            if(!isset($_SESSION['login'])){
-                header("Location: index.php");
-            }
-       
-          $servername = "localhost";
-          $username = "root";
-          $pass = "";
-
-          try{
-            $pdo = new PDO("mysql:host=$servername;dbname=baza_ogloszenia",$username, $pass);
-            foreach($pdo->query('SELECT * FROM ogloszenia order by data desc LIMIT 5 ') as $wiersz){
-                echo "<a href='this_adv_t.php?id=".$wiersz['id']."'><article class='adv_view'> <img src='".$wiersz['zdjecie']."'><div><p>".$wiersz['nazwa']."</p><p> Cena: ".$wiersz['cena']."</p><p>Lokalizacja: ".$wiersz['lokalizacja']."</p><p>Data dodania: ".$wiersz['data']."</div> </article></a>";
-                
-                echo"<br>";
-            }
-
-
-          }
-
-          catch(PDOException $e){
-            echo $sql . "<br>" . $e->getMessage();
-          }
-
-
+           include 'scripts/index_log_script.php';
 
        ?>
 
@@ -81,15 +59,7 @@
      
       <?php
       
-        @$kryterium = $_POST['find'];
-        @$location = $_POST['location'];
-        
-        $_SESSION['kryterium']=$kryterium;
-        $_SESSION['location']=$location;
-      
-        if(isset($kryterium) || isset($location)){
-            header ("Location: wyszukiwanie_t.php");
-        }
+        include 'scripts/index_log_script2.php';
         
       ?>
 

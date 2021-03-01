@@ -4,6 +4,8 @@
      <link rel="stylesheet" href="style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="icon" href="fav.png"/>
+    <title>kupuj.pl</title>
     
 </head>
 <body>
@@ -22,24 +24,7 @@
     
     
     <?php
-          $servername = "localhost";
-          $username = "root";
-          $pass = "";
-    
-          $id = $_GET['id'];
-
-         try{
-            $pdo = new PDO("mysql:host=$servername;dbname=baza_ogloszenia",$username, $pass);
-            foreach($pdo->query('SELECT * FROM ogloszenia where id='.$id.' ') as $wiersz){
-                echo "<a href='this_adv.php?id=".$wiersz['id']."'><article class='adv_view'> <img src='".$wiersz['zdjecie']."'><p>".$wiersz['nazwa']."</p><p> Cena: ".$wiersz['cena']."</p><p>".$wiersz['lokalizacja']."</p> </article></a>";
-            }
-
-
-          }
-
-          catch(PDOException $e){
-            echo $sql . "<br>" . $e->getMessage();
-          }
+         include 'scripts/this_adv_script.php';
     ?>
     
     
