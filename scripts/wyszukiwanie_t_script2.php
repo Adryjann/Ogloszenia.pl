@@ -20,9 +20,9 @@
     
             
     
-          $servername = "mysql01.adryjan.beep.pl";
-          $username = "adryjan";
-          $pass = "n5YFxwFCrWc0vwey";
+          $servername = "localhost";
+          $username = "root";
+          $pass = "";
          
             
             

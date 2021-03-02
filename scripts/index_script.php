@@ -3,9 +3,9 @@
             if(isset($_SESSION['login'])){
                 header("Location: index_log.php");
             }
-          $servername = "mysql01.adryjan.beep.pl";
-          $username = "adryjan";
-          $pass = "n5YFxwFCrWc0vwey";
+          $servername = "localhost";
+          $username = "root";
+          $pass = "";
 
           try{
             $pdo = new PDO("mysql:host=$servername;dbname=baza_ogloszenia",$username, $pass);
